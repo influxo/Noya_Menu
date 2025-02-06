@@ -29,19 +29,19 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
         animate={{ 
           opacity: currentScene === 3 ? 0 : 1 
         }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.4 }}
       />
       
-      <div className="relative z-10 h-full">
+      <div className="relative z-10 w-full h-full flex items-center justify-center">
         <AnimatePresence mode="wait">
           {currentScene === 1 && (
             <motion.div
               key="scene1"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 1, scale: 2 }}
+              exit={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px]"
+              className="w-[200px]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
             </motion.div>
@@ -50,11 +50,11 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
           {currentScene === 2 && (
             <motion.div
               key="scene2"
-              initial={{ opacity: 1, scale: 2 }}
-              animate={{ opacity: 1, scale: 2.5 }}
-              exit={{ opacity: 1, scale: 2 }}
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1.5 }}
+              exit={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px]"
+              className="w-[200px]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
             </motion.div>
@@ -65,19 +65,15 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
               key="scene3"
               initial={{ 
                 opacity: 1, 
-                scale: 2,
-                top: '50%',
-                left: '50%',
-                x: '-50%',
-                y: '-50%'
+                scale: 1,
+                x: 0,
+                y: 0
               }}
               animate={{ 
                 opacity: 1, 
                 scale: 0.5,
-                top: '20px',
-                left: '20px',
-                x: '0%',
-                y: '0%'
+                x: '-34vw',
+                y: '-37vh'
               }}
               transition={{ 
                 duration: 1,
@@ -85,7 +81,7 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
                 opacity: { duration: 0.3 }
               }}
               onAnimationComplete={onAnimationComplete}
-              className="absolute w-[200px]"
+              className="w-[200px]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
             </motion.div>

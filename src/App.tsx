@@ -3,6 +3,7 @@ import './App.css'
 import Loader from './components/Loader'
 import { motion, AnimatePresence } from 'framer-motion';
 import noyaBg from "/images/noya-background-2 1.png"
+import Navbar from './components/Navbar';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,17 +27,9 @@ function App() {
         )}
       </AnimatePresence>
       
-      {/* Persistent navbar logo */}
+      {/* Navbar */}
       <AnimatePresence>
-        {showNavLogo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="fixed top-5 left-5 w-[100px] z-50"
-          >
-            <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
-          </motion.div>
-        )}
+        {showNavLogo && <Navbar />}
       </AnimatePresence>
 
       {/* Main content */}
@@ -44,9 +37,9 @@ function App() {
         initial={{ opacity: 0 }}
         animate={{ opacity: !isLoading ? 1 : 0 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 w-full h-full"
+        className="relative z-10 w-full h-full pt-[120px]"
       >
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4">
           <p className='text-yellow-500 font-semibold text-3xl'>Hello World </p>
         </div>
       </motion.div>
