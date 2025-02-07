@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 
 interface LoaderProps {
   onAnimationComplete: () => void;
+  targetPosition: {
+    top: number;
+    left: number;
+  };
 }
 
-const Loader = ({ onAnimationComplete }: LoaderProps) => {
+const Loader: React.FC<LoaderProps> = ({ onAnimationComplete, targetPosition }) => {
   const [currentScene, setCurrentScene] = useState(1);
-  
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (currentScene < 3) {
@@ -18,11 +22,20 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
     return () => clearTimeout(timer);
   }, [currentScene]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      // Removed the unused windowSize state
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="fixed inset-0 overflow-hidden">
       {/* Background Image */}
       <motion.img 
-        src="/images/noya-background-2 1.png" 
+        src="/images/noya-bg-short-scaled.jpg" 
         alt="Background" 
         className="absolute inset-0 w-full h-full object-cover"
         initial={{ opacity: 1 }}
@@ -41,7 +54,7 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
               animate={{ opacity: 1, scale: 0.8 }}
               exit={{ opacity: 1, scale: 0.8 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="w-[150px]"
+              className="w-[30vw]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
             </motion.div>
@@ -53,7 +66,7 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
               initial={{ opacity: 1, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1.25 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="w-[150px]"
+              className="w-[30vw]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
             </motion.div>
@@ -71,16 +84,14 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
               animate={{ 
                 opacity: 1, 
                 scale: 0.8,
-                x: '0', // Move to the center horizontally
-                y: '-88%' // Move to the top of the application
+                y: targetPosition.top - (window.innerHeight / 2) + (window.innerHeight * 0.1) // Add 10% offset to adjust for the overshoot
               }}
               transition={{ 
                 duration: 1,
-                ease: "easeInOut",
-                opacity: { duration: 0.3 }
+                ease: "easeOut"
               }}
               onAnimationComplete={onAnimationComplete}
-              className="w-[150px]"
+              className="w-[30vw]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
             </motion.div>
