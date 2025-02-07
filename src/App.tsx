@@ -38,7 +38,7 @@ function App() {
             key="scene1"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 0.8 }}
-            className="w-[150px]"
+            className="w-[150px] py-10"
           >
             <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
           </motion.div>
