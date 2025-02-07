@@ -84,7 +84,7 @@ const Loader: React.FC<LoaderProps> = ({ onAnimationComplete, targetPosition }) 
               animate={{ 
                 opacity: 1, 
                 scale: 0.8,
-                y: targetPosition.top - (window.innerHeight / 2) + (window.innerHeight * 0.1) // Add 10% offset to adjust for the overshoot
+                y: targetPosition.top - (window.innerHeight / 2) + (window.innerHeight * 0.125) // Increased to 15% offset for more precise landing
               }}
               transition={{ 
                 duration: 1,
