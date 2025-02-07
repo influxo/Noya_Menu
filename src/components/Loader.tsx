@@ -13,7 +13,7 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
       if (currentScene < 3) {
         setCurrentScene(prev => prev + 1);
       }
-    }, 1500); // Shorter duration between scenes
+    }, 1000); // Shorter duration between scenes
 
     return () => clearTimeout(timer);
   }, [currentScene]);
@@ -37,9 +37,9 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
           {currentScene === 1 && (
             <motion.div
               key="scene1"
-              initial={{ opacity: 0, scale: 1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 0.8 }}
+              exit={{ opacity: 1, scale: 0.8 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
               className="w-[200px]"
             >
@@ -50,9 +50,8 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
           {currentScene === 2 && (
             <motion.div
               key="scene2"
-              initial={{ opacity: 1, scale: 1 }}
-              animate={{ opacity: 1, scale: 1.5 }}
-              exit={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 1, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1.25 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
               className="w-[200px]"
             >
@@ -65,15 +64,15 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
               key="scene3"
               initial={{ 
                 opacity: 1, 
-                scale: 1,
+                scale: 1.25,
                 x: 0,
                 y: 0
               }}
               animate={{ 
                 opacity: 1, 
-                scale: 0.5,
-                x: '-34vw',
-                y: '-37vh'
+                scale: 0.8,
+                x: '0', // Move to the center horizontally
+                y: '-63%' // Move to the top of the application
               }}
               transition={{ 
                 duration: 1,
