@@ -1,17 +1,35 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './App.css'
 import Loader from './components/Loader'
 import { motion, AnimatePresence } from 'framer-motion';
-import noyaBg from "/images/noya-background-2 1.png"
+// import noyaBg from "/images/noya-background-2 1.png"
+import noyaBg from "/images/noya-bg-short-scaled.jpg";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const targetLogoRef = useRef<HTMLDivElement>(null);
+  const [targetPosition, setTargetPosition] = useState({ top: 0, left: 0 });
+
+  useEffect(() => {
+    const updatePosition = () => {
+      if (targetLogoRef.current) {
+        const rect = targetLogoRef.current.getBoundingClientRect();
+        const paddingTop = parseInt(window.getComputedStyle(targetLogoRef.current).paddingTop);
+        setTargetPosition({
+          top: rect.top + paddingTop,
+          left: rect.left
+        });
+      }
+    };
+
+    // Update position initially and on resize
+    updatePosition();
+    window.addEventListener('resize', updatePosition);
+    return () => window.removeEventListener('resize', updatePosition);
+  }, []);
 
   const handleLoaderComplete = () => {
-    // setShowNavLogo(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
+    setIsLoading(false);
   };
 
   return (
@@ -21,10 +39,9 @@ function App() {
       {/* Loader */}
       <AnimatePresence>
         {isLoading && (
-          <Loader onAnimationComplete={handleLoaderComplete} />
+          <Loader onAnimationComplete={handleLoaderComplete} targetPosition={targetPosition} />
         )}
       </AnimatePresence>
-      
 
       {/* Main content */}
       <motion.div
@@ -35,10 +52,11 @@ function App() {
       >
         <div className="w-full h-screen flex flex-col items-center">
           <motion.div
+            ref={targetLogoRef}
             key="scene1"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 0.8 }}
-            className="w-[150px] py-10"
+            className="w-[30vw] py-10"
           >
             <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
           </motion.div>
