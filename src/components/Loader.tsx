@@ -41,7 +41,7 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
               animate={{ opacity: 1, scale: 0.8 }}
               exit={{ opacity: 1, scale: 0.8 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="w-[200px]"
+              className="w-[150px]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
             </motion.div>
@@ -53,7 +53,7 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
               initial={{ opacity: 1, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1.25 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="w-[200px]"
+              className="w-[150px]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
             </motion.div>
@@ -80,7 +80,7 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
                 opacity: { duration: 0.3 }
               }}
               onAnimationComplete={onAnimationComplete}
-              className="w-[200px]"
+              className="w-[150px]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
             </motion.div>
