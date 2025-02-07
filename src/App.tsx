@@ -31,9 +31,9 @@ function App() {
         initial={{ opacity: 0 }}
         animate={{ opacity: !isLoading ? 1 : 0 }}
         transition={{ duration: 0 }}
-        className="relative z-10 w-full h-full"
+        className="relative motionDiv z-10 w-full h-full"
       >
-        <div className="w-full h-full flex flex-col items-center justify-center">
+        <div className="w-full h-screen flex flex-col items-center">
           <motion.div
             key="scene1"
             initial={{ opacity: 0, scale: 0.8 }}

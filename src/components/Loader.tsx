@@ -72,7 +72,7 @@ const Loader = ({ onAnimationComplete }: LoaderProps) => {
                 opacity: 1, 
                 scale: 0.8,
                 x: '0', // Move to the center horizontally
-                y: '-63%' // Move to the top of the application
+                y: '-100%' // Move to the top of the application
               }}
               transition={{ 
                 duration: 1,
