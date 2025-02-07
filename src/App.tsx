@@ -15,7 +15,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="h-screen relative">
       <img src={noyaBg} alt="Noya Background" className="absolute inset-0 w-full h-full object-cover" />
       
       {/* Loader */}
@@ -31,16 +31,14 @@ function App() {
         initial={{ opacity: 0 }}
         animate={{ opacity: !isLoading ? 1 : 0 }}
         transition={{ duration: 0 }}
-        className="relative z-10 w-full h-full"
+        className="relative motionDiv z-10 w-full h-full"
       >
-        <div className="w-full h-full flex flex-col items-center justify-center">
+        <div className="w-full h-screen flex flex-col items-center">
           <motion.div
             key="scene1"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 0.8 }}
-            exit={{ opacity: 1, scale: 0.8 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="w-[200px]"
+            className="w-[150px]"
           >
             <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
           </motion.div>
