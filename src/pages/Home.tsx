@@ -1,23 +1,40 @@
-import React from "react";
-
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import noyaBg from "/images/noya-background-2 1.png";
-import { useState } from "react";
 import Loader from "../components/Loader";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const targetLogoRef = useRef<HTMLDivElement>(null);
+  const [targetPosition, setTargetPosition] = useState({ top: 0, left: 0 });
+
+  useEffect(() => {
+    const updatePosition = () => {
+      if (targetLogoRef.current) {
+        const rect = targetLogoRef.current.getBoundingClientRect();
+        const paddingTop = parseInt(
+          window.getComputedStyle(targetLogoRef.current).paddingTop
+        );
+        setTargetPosition({
+          top: rect.top + paddingTop,
+          left: rect.left,
+        });
+      }
+    };
+
+    // Update position initially and on resize
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+    return () => window.removeEventListener("resize", updatePosition);
+  }, []);
 
   const handleLoaderComplete = () => {
-    // setShowNavLogo(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
+    setIsLoading(false);
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="h-screen relative">
       <img
         src={noyaBg}
         alt="Noya Background"
@@ -29,7 +46,7 @@ const Home: React.FC = () => {
         {isLoading && (
           <Loader
             onAnimationComplete={handleLoaderComplete}
-            targetPosition={{ top: 0, left: 0 }}
+            targetPosition={targetPosition}
           />
         )}
       </AnimatePresence>
@@ -39,16 +56,15 @@ const Home: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: !isLoading ? 1 : 0 }}
         transition={{ duration: 0 }}
-        className="relative z-10 w-full h-full"
+        className="relative motionDiv z-10 w-full h-full"
       >
-        <div className="w-full h-full flex flex-col items-center justify-center">
+        <div className="w-full h-screen flex flex-col items-center">
           <motion.div
+            ref={targetLogoRef}
             key="scene1"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 0.8 }}
-            exit={{ opacity: 1, scale: 0.8 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="w-[200px]"
+            className="w-[30vw] py-10"
           >
             <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
           </motion.div>
@@ -65,11 +81,9 @@ const Home: React.FC = () => {
             </p>
           </div>
           <div>
-            <Link to="/menu">
-              <button className="bg-transparent border border-[#D4B069] text-[#D4B069] font-semibold py-2 px-4 rounded">
-                View Menu
-              </button>
-            </Link>
+            <button className="bg-transparent border border-[#D4B069] text-[#D4B069] font-semibold py-2 px-4 rounded">
+              <Link to="/menu">View Menu</Link>
+            </button>
           </div>
         </div>
       </motion.div>

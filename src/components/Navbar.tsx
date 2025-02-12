@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="fixed top-0 left-0 w-full z-[999]"
+      className={`top-0 left-0 w-full z-[999] fixed`}
     >
       <div
         className={`w-full h-[180px] border-b-2 border-[#D4B069] flex justify-center items-center transition-all duration-300 ${
