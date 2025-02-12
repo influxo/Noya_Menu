@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface LoaderProps {
   onAnimationComplete: () => void;
@@ -11,6 +11,7 @@ interface LoaderProps {
 
 const Loader: React.FC<LoaderProps> = ({ onAnimationComplete, targetPosition }) => {
   const [currentScene, setCurrentScene] = useState(1);
+  const targetLogoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,6 +31,14 @@ const Loader: React.FC<LoaderProps> = ({ onAnimationComplete, targetPosition }) 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const animateLogo = () => {
+    const logoElement = targetLogoRef.current;
+    if (logoElement) {
+      // Animation logic to move to the fixed position
+      logoElement.style.transform = 'translate(-50%, -50%)'; // Adjust as necessary
+    }
+  };
 
   return (
     <div className="fixed inset-0 overflow-hidden">
@@ -90,7 +99,11 @@ const Loader: React.FC<LoaderProps> = ({ onAnimationComplete, targetPosition }) 
                 duration: 1,
                 ease: "easeOut"
               }}
-              onAnimationComplete={onAnimationComplete}
+              onAnimationComplete={() => {
+                animateLogo();
+                onAnimationComplete();
+              }}
+              ref={targetLogoRef}
               className="w-[30vw]"
             >
               <img src="/images/logo.svg" alt="Noya Logo" className="w-full" />
