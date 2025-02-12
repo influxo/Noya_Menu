@@ -26,7 +26,12 @@ const Home: React.FC = () => {
 
       {/* Loader */}
       <AnimatePresence>
-        {isLoading && <Loader onAnimationComplete={handleLoaderComplete} />}
+        {isLoading && (
+          <Loader
+            onAnimationComplete={handleLoaderComplete}
+            targetPosition={{ top: 0, left: 0 }}
+          />
+        )}
       </AnimatePresence>
 
       {/* Main content */}
