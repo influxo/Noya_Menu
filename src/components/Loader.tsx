@@ -35,8 +35,8 @@ const Loader: React.FC<LoaderProps> = ({ onAnimationComplete, targetPosition }) 
   const animateLogo = () => {
     const logoElement = targetLogoRef.current;
     if (logoElement) {
-      // Animation logic to move to the fixed position
-      logoElement.style.transform = 'translate(-50%, -50%)'; // Adjust as necessary
+      logoElement.style.transition = 'transform 0.5s ease'; // Add transition
+      logoElement.style.transform = 'translate(-50%, -50%)'; // Ensure smooth landing
     }
   };
 
