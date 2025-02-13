@@ -7,4 +7,8 @@ export default defineConfig({
     react(),
     // tailwindcss(),
   ],
+  base: '/', // or './' if deployed in a subdirectory
+  build: {
+    outDir: 'dist'
+  }
 })
