@@ -24,6 +24,7 @@ const Navbar: React.FC = () => {
           isScrolled ? "backdrop-blur-md bg-black/10" : "bg-transparent"
         }`}
       >
+        <div></div>
         <div className="px-5 py-5">
           <img src="/images/logo.svg" alt="Noya Logo" className="w-[80px]" />
         </div>

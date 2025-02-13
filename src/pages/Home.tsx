@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import noyaBg from "/images/noya-background-2 1.png";
+import noyaBg from "/images/noya-bg-short-scaled.jpg";
 import Loader from "../components/Loader";
 import {Link} from "react-router-dom";
 
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
       <img
         src={noyaBg}
         alt="Noya Background"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full brightness-[0.7] object-cover"
       />
 
       {/* Loader */}
