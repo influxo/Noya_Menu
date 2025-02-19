@@ -34,7 +34,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="h-screen relative">
+    <div className="max-h-screen relative">
       <img
         src={noyaBg}
         alt="Noya Background"
@@ -80,8 +80,8 @@ const Home: React.FC = () => {
               SETTING.
             </p>
           </div>
-          <div>
-            <button className="bg-transparent border border-[#D4B069] text-[#D4B069] font-semibold py-2 px-4 rounded">
+          <div className='w-full flex justify-center items-center px-[4%]'>
+            <button className="bg-transparent border border-[#D4B069] font-italiana w-full text-[#D4B069] font-semibold py-2 px-4 rounded">
               <Link to="/menu">View Menu</Link>
             </button>
           </div>
