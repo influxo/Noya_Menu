@@ -27,7 +27,7 @@ const SingleCategory: React.FC = () => {
               <h1 
                 className="text-4xl font-italiana text-center mb-12 italic text-[#D4B069]"
               >
-                Menu
+               {category?.title}
               </h1>
     
               <div className="space-y-8">
